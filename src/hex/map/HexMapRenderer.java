@@ -43,19 +43,10 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-        
-        //obj = new Obj(context);
-        //obj.loadGLTexture();
-        //obj.setVelocity(0.01f, 0.0f, 0.0f);
-        //map.add(new Iso(context));
-        //map.add(new Iso(context));
-        //map.get(1).setPosition(0.45f,-0.25f,0.0f);
-        
-        map = new Map(context);
-        
-        //addMapCol();
-        //addMapRow();
-        
+
+        if(map == null){
+        	map = new Map(context);
+        }
         
      // Use culling to remove back faces.
 		//GLES20.glEnable(GLES20.GL_CULL_FACE);
@@ -157,13 +148,13 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     }
     
     // Map object test
-    /*
+    
     public int[] getIso(float x, float y){
     	int[] ret = {-1, -1};
     	//int i = 0;
     	for(int i = 0; i < map.getCol(); i++){
     		for(int j = 0; j < map.getRow(); j++){
-    			if(map.getIso(i,j).tapThis(x, y)){
+    			if(map.getIso(i, j).tapThis(x, y)){
     				ret[0] = i;
     				ret[1] = j;
     				return ret;
@@ -172,19 +163,13 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     	}
     	
     	return ret; //not in map
-    }*/
-    
-    public void addMapRow(){
-    	map.addRow();;
-    }
-    public void addMapCol(){
-    	map.addCol();
     }
     
-    /*
+    
+    
     public void changeIso(int i, int j){
     	map.getIso(i, j).changeType();
-    }*/
+    }
         
     //////////////////
     // test methods //

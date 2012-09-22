@@ -124,4 +124,5 @@ public class Iso extends Obj {
 		setTexture(textureID[type]);	// change the texture for the isometric cell
 		//setColor(colors[type]);		// change colors for the isometric cell
 	}
+	
 }

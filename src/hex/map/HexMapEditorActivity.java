@@ -56,15 +56,11 @@ public class HexMapEditorActivity extends Activity {
     			float y = e.getRawY();
     			
     			// if iso not touched, then add to map size
-    			//int[] num = view.getRend().getIso(x,y);
-    			int[] num = {-1, -1};
+    			int[] num = view.getRend().getIso(x,y);
+    			//int[] num = {-1, -1};
     			//System.out.println(output[0] + "\n" + output[1] + "\n ");
     			if(num[0] != -1 || num[1] != -1){
-    				//view.getRend().changeIso(num[0], num[1]);
-    			}
-    			else{
-    				view.getRend().addMapCol();
-    				view.getRend().addMapRow();
+    				view.getRend().changeIso(num[0], num[1]);
     			}
         	}
 			

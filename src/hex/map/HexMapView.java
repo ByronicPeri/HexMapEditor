@@ -15,14 +15,8 @@ public class HexMapView extends GLSurfaceView {
 		setEGLContextClientVersion(2);
 		
 		renderer = new HexMapRenderer(context);
-		//renderer.setContext(context);
 		setRenderer(renderer);
 	}
-	
-	/*
-	public Iso getCell(float x, float y){
-		return renderer.getCell(x,y);
-	}*/
 	
 	public HexMapRenderer getRend(){
 		return renderer;

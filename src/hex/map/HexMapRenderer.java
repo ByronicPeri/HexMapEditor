@@ -22,7 +22,7 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
 	
 	public Obj obj;
 	//private ArrayList<Iso> map = new ArrayList<Iso>();
-	private Map map;
+	private Map map = null;
 	
 	private final float[] mMVPMatrix = new float[16];
     private final float[] mProjMatrix = new float[16];
@@ -39,7 +39,6 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     	context = con;
     }
 	
-	// not my code
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);

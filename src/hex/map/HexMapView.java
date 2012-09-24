@@ -10,7 +10,6 @@ public class HexMapView extends GLSurfaceView {
 	public HexMapView(Context context) {
 		super(context);
 		
-		// not my code
 		// Create an OpenGL ES 2.0 context
 		setEGLContextClientVersion(2);
 		

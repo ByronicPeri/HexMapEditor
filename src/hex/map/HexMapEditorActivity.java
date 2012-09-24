@@ -1,6 +1,7 @@
 package hex.map;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -26,6 +27,11 @@ public class HexMapEditorActivity extends Activity {
         
         view = new HexMapView(this);
         setContentView(view);
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+    	
     }
     
     public boolean onTouchEvent(MotionEvent e){
@@ -88,17 +94,4 @@ public class HexMapEditorActivity extends Activity {
     	
     	return true;
     }
-    
-    /*
-    private float[] transformCart(float x, float y){
-    	int[] size = view.getRend().getSize();
-    	float ratio = (float) size[0] / size[1];
-    	
-    	float[] output = new float[2];
-    	output[0] = (float)(x / (size[0] / 2.0f)) - 1.0f; 		// -1,1
-    	output[1] = (float)(-y / (size[1] / ratio)) - ratio; 	// -ratio, ratio
-    	
-    	return output;
-    }
-    */
 }

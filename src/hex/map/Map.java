@@ -1,10 +1,13 @@
 package hex.map;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-
 import android.content.Context;
 
-public class Map {
+public class Map implements Serializable {
 
 	//private ArrayList<MapFrag> map = new ArrayList<MapFrag>();
 	private Iso[] map;
@@ -16,7 +19,6 @@ public class Map {
 		this.context = context;
 		float[] startPos = {0,0,0};
 		
-		//map.add(new MapFrag(context, startPos));
 		map = new Iso[row * col];
 		
 		for(int i = 0; i < map.length; i++){
@@ -65,6 +67,21 @@ public class Map {
 			//System.out.println(i);
 		}
 		
+	}
+	
+	public void save(File file){
+		
+		try{
+			FileOutputStream fStream = new FileOutputStream(file);
+			ObjectOutputStream out = new ObjectOutputStream(fStream);
+			
+			out.writeObject(this);
+			out.flush();
+			out.close();
+		}
+		catch(Exception e){
+			System.out.println("Map.makeSaveFile() error");
+		}
 	}
 	
 	/*

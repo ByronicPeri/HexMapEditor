@@ -2,9 +2,11 @@ package hex.map;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -113,6 +115,45 @@ public class Helper {
 		//output[1] = 1 - (float) y / size[0];
 		
 		return output;
+	}
+	
+	public static boolean tempMapAvailable(){
+		try{
+			FileInputStream instream = new FileInputStream("tempMapSave");
+			DataInputStream in = new DataInputStream(instream);
+			BufferedReader buffered = new BufferedReader(new InputStreamReader(in));
+			
+			if(buffered.readLine() != "null"){
+				return true;
+			}
+		}
+		catch(Exception e){
+		}
+		
+		return false;
+	}
+	
+	public static Map mapFromFile(File file){
+		Map map = null;
+		
+		try{
+			FileInputStream fStream = new FileInputStream(file);
+			ObjectInputStream in = new ObjectInputStream(fStream);
+			
+			map = (Map)in.readObject();
+			
+			in.close();
+		}
+		catch(Exception e){
+			System.out.println("Helper.mapFromFile() error");
+		}
+		
+		return map;
+	}
+	
+	public static File getTempMapFile(){
+		File tempMap = new File("tempMapSave");
+		return tempMap;
 	}
 	
 }

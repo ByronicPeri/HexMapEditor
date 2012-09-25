@@ -1,6 +1,8 @@
 package hex.map;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -38,13 +40,20 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     public HexMapRenderer(Context con){
     	context = con;
     }
+    
+    public void onSurfaceDestroyed(){
+    	
+    }
 	
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
-        if(map == null){
+        if(!(Helper.tempMapAvailable())){
         	map = new Map(context);
+        }
+        else{
+        	map = getMapFromFile(Helper.getTempMapFile());
         }
         
      // Use culling to remove back faces.
@@ -168,6 +177,21 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     
     public void changeIso(int i, int j){
     	map.getIso(i, j).changeType();
+    }
+    
+    public void saveTempMap(){
+    	File file = new File("tempMapSave");
+    	map.save(file);
+    }
+    
+    public Map getMapFromFile(File file){
+    	Map temp  = new Map(context);
+    	Map temp2 = Helper.mapFromFile(file);
+    	if(temp2 != null){
+    		temp = temp2;
+    	}
+    	
+    	return temp;
     }
         
     //////////////////

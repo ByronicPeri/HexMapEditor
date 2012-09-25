@@ -34,6 +34,12 @@ public class HexMapEditorActivity extends Activity {
     	
     }
     
+    @Override
+    public void onPause(){
+    	view.getRend().saveTempMap();
+    	
+    }
+    
     public boolean onTouchEvent(MotionEvent e){
     	float distance = 0;
     	float[] deltaD = new float[2];

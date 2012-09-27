@@ -18,7 +18,8 @@ import android.opengl.Matrix;
 
 public class Helper {
 
-	private static int[] size = new int[2];
+	public static int[] size = new int[2];
+	
 	private static float[] transformationMatrix = new float[16];
 	private static float[] modelMatrix = new float[16];
 	

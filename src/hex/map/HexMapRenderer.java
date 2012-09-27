@@ -21,10 +21,12 @@ import android.util.Log;
 public class HexMapRenderer implements GLSurfaceView.Renderer {
 
 	private Context context;
+	//private AppControl appControl_;
+	//private Map map;
 	
 	public Obj obj;
 	//private ArrayList<Iso> map = new ArrayList<Iso>();
-	private Map map = null;
+	
 	
 	private final float[] mMVPMatrix = new float[16];
     private final float[] mProjMatrix = new float[16];
@@ -33,12 +35,12 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     
     private int[] size = new int[2];
     
-    private float[] temp;
-    
-    private static final String TAG = "CollisionRenderer";
+    private static final String TAG = "HexMapRenderer";
     
     public HexMapRenderer(Context con){
     	context = con;
+    	//map = new Map(con);
+    	//appControl_ = control;
     }
     
     public void onSurfaceDestroyed(){
@@ -48,15 +50,10 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-
-        if(!(Helper.tempMapAvailable())){
-        	map = new Map(context);
-        }
-        else{
-        	map = getMapFromFile(Helper.getTempMapFile());
-        }
         
-     // Use culling to remove back faces.
+        HexMapEditorActivity.appControl_.init();
+        
+        // Use culling to remove back faces.
 		//GLES20.glEnable(GLES20.GL_CULL_FACE);
         
         GLES20.glEnable(GLES20.GL_TEXTURE_2D);
@@ -80,19 +77,13 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
         Matrix.setLookAtM(mVMatrix, 0, Camera.getEye()[0], Camera.getEye()[1], Camera.getEye()[2], 0, 0, 0, 0, 1.0f, 0);
         Camera.setView(mVMatrix);
         
-        //Camera.setRolling(Camera.getRolling() + 0.1f);
-        //Camera.setPitch(Camera.getPitch() + 0.1f);
-        //Camera.setYawning(Camera.getYawning() + 0.1f);
-        
 		// Calculate the projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjMatrix, 0, mVMatrix, 0);
         Helper.setTransMatrix(mMVPMatrix);
         
-        // draw map
-        map.draw(mMVPMatrix);
-        //for(int i = 0; i < map.size(); i++){
-        //	map.get(i).draw(mMVPMatrix);
-        //}
+        // draw
+        HexMapEditorActivity.appControl_.draw(mMVPMatrix);
+        //map.draw(mMVPMatrix);
         
     }
     
@@ -148,51 +139,7 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     }
     
     
-    public static String getVertexShader(){
-    	return Helper.textFromFile("vertexShaderTextureLights");
-    }
-    public static String getFragmentShader(){
-    	return Helper.textFromFile("fragmentShaderPerPixel");
-    }
     
-    // Map object test
-    
-    public int[] getIso(float x, float y){
-    	int[] ret = {-1, -1};
-    	//int i = 0;
-    	for(int i = 0; i < map.getCol(); i++){
-    		for(int j = 0; j < map.getRow(); j++){
-    			if(map.getIso(i, j).tapThis(x, y)){
-    				ret[0] = i;
-    				ret[1] = j;
-    				return ret;
-    			}
-		    }
-    	}
-    	
-    	return ret; //not in map
-    }
-    
-    
-    
-    public void changeIso(int i, int j){
-    	map.getIso(i, j).changeType();
-    }
-    
-    public void saveTempMap(){
-    	File file = new File("tempMapSave");
-    	map.save(file);
-    }
-    
-    public Map getMapFromFile(File file){
-    	Map temp  = new Map(context);
-    	Map temp2 = Helper.mapFromFile(file);
-    	if(temp2 != null){
-    		temp = temp2;
-    	}
-    	
-    	return temp;
-    }
         
     //////////////////
     // test methods //

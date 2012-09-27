@@ -40,6 +40,10 @@ public class Map implements Serializable {
 
 	}
 	
+	public void setContext(Context con){
+		context = con;
+	}
+	
 	public int getRow(){
 		return row;
 	}
@@ -69,6 +73,7 @@ public class Map implements Serializable {
 		
 	}
 	
+	/*
 	public void save(File file){
 		
 		try{
@@ -82,7 +87,7 @@ public class Map implements Serializable {
 		catch(Exception e){
 			System.out.println("Map.makeSaveFile() error");
 		}
-	}
+	}*/
 	
 	/*
 	public void printLocLast(){

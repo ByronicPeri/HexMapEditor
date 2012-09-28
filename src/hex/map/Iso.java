@@ -82,9 +82,8 @@ public class Iso extends Obj {
 	
 	private int type = 3;
 	
-	public Iso(Context context){
-		super(context);
-		this.context = context;
+	public Iso(){
+		super();
 		setVertices(verticesO);
 		setTexCoord(textureCoordinateData, true);
 		setColor(initColor);

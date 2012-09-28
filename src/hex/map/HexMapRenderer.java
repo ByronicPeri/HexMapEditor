@@ -19,14 +19,6 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 public class HexMapRenderer implements GLSurfaceView.Renderer {
-
-	private Context context;
-	//private AppControl appControl_;
-	//private Map map;
-	
-	public Obj obj;
-	//private ArrayList<Iso> map = new ArrayList<Iso>();
-	
 	
 	private final float[] mMVPMatrix = new float[16];
     private final float[] mProjMatrix = new float[16];
@@ -37,10 +29,7 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     
     private static final String TAG = "HexMapRenderer";
     
-    public HexMapRenderer(Context con){
-    	context = con;
-    	//map = new Map(con);
-    	//appControl_ = control;
+    public HexMapRenderer(){
     }
     
     public void onSurfaceDestroyed(){
@@ -128,12 +117,13 @@ public class HexMapRenderer implements GLSurfaceView.Renderer {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Helper methods
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
     public void setContext(Context context){
     	this.context = context;
     }
     public Context getContext(){
     	return context;
-    }
+    }*/
     public int[] getSize(){
     	return size;
     }

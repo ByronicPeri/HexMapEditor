@@ -13,16 +13,15 @@ public class Map implements Serializable {
 	private Iso[] map;
 	private int row = 10;
 	private int col = 10;
-	private Context context;
 	
-	public Map(Context context){
-		this.context = context;
-		float[] startPos = {0,0,0};
+	public Map(){
+		// not sure what this was for, but it had a useful purpose.
+		//float[] startPos = {0,0,0};
 		
 		map = new Iso[row * col];
 		
 		for(int i = 0; i < map.length; i++){
-			map[i] = new Iso(context);
+			map[i] = new Iso();
 		}
 		
 		for(int r = 0; r < row; r++){
@@ -38,10 +37,6 @@ public class Map implements Serializable {
 			}
 		}
 
-	}
-	
-	public void setContext(Context con){
-		context = con;
 	}
 	
 	public int getRow(){

@@ -5,8 +5,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 
 public class AppControl {
-
-	private Context context;
+	
 	private Map map = null;
 	
 	private boolean init = false;
@@ -18,10 +17,8 @@ public class AppControl {
 	private final float scrollMin = 15;
 	private final float[] touchSpeed = {2.0f,3.0f};
 	
-	AppControl(Context con){
-		context = con;
-		
-		map = new Map(context);
+	AppControl(){
+		map = new Map();
 		
 		/*
 		if(!(Helper.tempMapAvailable())){
@@ -103,7 +100,7 @@ public class AppControl {
 	
 	public void init(){
 		if(!init){
-			map = new Map(context);
+			map = new Map();
 			init = true;
 		}
 	}
@@ -157,7 +154,7 @@ public class AppControl {
     }*/
     
     public Map getMapFromFile(File file){
-    	Map temp  = new Map(context);
+    	Map temp  = new Map();
     	Map temp2 = Helper.mapFromFile(file);
     	if(temp2 != null){
     		temp = temp2;

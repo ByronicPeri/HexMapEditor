@@ -7,13 +7,13 @@ public class HexMapView extends GLSurfaceView {
 	
 	private HexMapRenderer renderer;
 	
-	public HexMapView(Context context) {
-		super(context);
+	public HexMapView() {
+		super(HexMapEditorActivity.getContext());
 		
 		// Create an OpenGL ES 2.0 context
 		setEGLContextClientVersion(2);
 		
-		renderer = new HexMapRenderer(context);
+		renderer = new HexMapRenderer();
 		setRenderer(renderer);
 	}
 	

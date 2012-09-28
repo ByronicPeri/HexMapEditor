@@ -19,7 +19,6 @@ public class Obj {
 	private float[] position;
 	private float[] cPosition = new float[1];
 	private int textureID = hex.map.R.drawable.blank; // default
-	private Context context;
 	private boolean updateTexture = false;
 	
 	//////////////////////////////////////////////////////////////////
@@ -175,8 +174,7 @@ public class Obj {
 	private float[] velocity = {0,0,0};
 	
 	
-	public Obj(Context con){
-		context = con;
+	public Obj(){
 		position = new float[]{0.0f,0.0f,0.0f};
 		vertexes = new float[vertexesO.length];
 		for(int i = 0; i < vertexes.length; i++){
@@ -316,7 +314,7 @@ public class Obj {
 	
 	public void loadGLTexture(){
 		// load texture
-		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), textureID);
+		Bitmap bitmap = BitmapFactory.decodeResource(HexMapEditorActivity.getContext().getResources(), textureID);
 		// check for textures already existing
 		// or not...
 		
